@@ -11,23 +11,10 @@ define(['jquery', 'backbone','underscore', 'posts/collections/posts','posts/post
                     this.objColPosts = new ColPosts();
                     this.request = null;
                     this.render();
+
                 },
                 render: function () { 
-                  this.fetchAllPosts();
-                }
-                ,
-                fetchAllPosts:function(){
-                    if(this.request)
-                        this.request.abort();
-                
-                      this.objColPosts.fetch({data: {page: 3}, success: function(data) {
-                         
-                        _.each(data.models,function(model){
-                            var objPost = new ViewPost({model:model});
-                            $(".posts .content").append(objPost.$el);
-                        })
-                    }});
-                }
+                 }
 
             });
         });

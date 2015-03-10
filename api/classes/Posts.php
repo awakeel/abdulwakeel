@@ -6,7 +6,10 @@ class Posts
 	    	$app->get('/posts', function () {
 	    		 $this->getAllPosts();
 	    	});
-    		 
+    		 $app->post('/posts',function(){
+            $request = Slim::getInstance()->request();
+            $this->savePost($request);
+        });
     			
     }
      
@@ -26,31 +29,18 @@ class Posts
             }
     }
      
-    function saveJobTypes($request){
+    function savePost($request){
     	 
     		$params = json_decode($request->getBody());
     		try {
-	    		if(isset($params->id) && !empty($params->id)){
-	    			$jobtypes = R::dispense( 'jobtypes' );
-	    			$jobtypes->id = $params->id;
-	    			$jobtypes->name = $params->name;
-	    			$jobtypes->color = $params->color;
-	    			$jobtypes->comments = $params->comments;
-	    			$jobtypes->franchiseid = $params->franchiseid;
-	    			
-	    			$id = R::store($jobtypes);
-	    		}else{
-	    			$jobtypes = R::dispense( 'jobtypes' );
-	    			 $jobtypes->name = $params->name;
-	    			 $jobtypes->color = $params->color;
-	    			 $jobtypes->comments = $params->comments;
-	    			 $jobtypes->franchiseid = $params->franchiseid;
-	    			 $jobtypes->createdon = R::isoDate();
-	    			 $jobtypes->isdeleted = 0;
-	    			 $jobtypes->isactivated = 0;
-	    			 $jobtypes->createdby = $params->franchiseid;
-	    			 $id = R::store($jobtypes);
-	    		}
+	    		 
+	    			$posts = R::dispense( 'posts' );
+	    			 $posts->title = $params->title;
+	    			 $posts->text = $params->text;
+	    			 $posts->createdon = R::isoDateTime();
+	    			 
+	    			 $id = R::store($posts);
+	    		 
     		  		echo json_encode($params);
     		 } catch(PDOException $e) {
     			  echo '{"error":{"text":'. $e->getMessage() .'}}';

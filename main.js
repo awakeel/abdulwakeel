@@ -8,6 +8,7 @@
 			jquery : 'lib/jquery-2.0.3.min',
 			underscore : 'lib/underscore',
 			backbone : 'lib/backbone-min',
+			wyswing : 'lib/wyswing',
 			text : 'lib/text' ,
 			'bootstrap' : 'lib/b/js/bootstrap.min' 
 		},

@@ -1,5 +1,5 @@
  
-					<h2><a href="singlepost.html"><%=this.model.get('title')%></a></h2>
+					<h2><a id="ancharsinglepost" href="#" data-id="<%=this.model.get('id')%>"><%=this.model.get('title')%></a></h2>
 
 			        <div class="row">
 			          	<div class="col-sm-6 col-md-6">
@@ -14,14 +14,14 @@
 
 			          <hr>
 
-			          <img src="http://placehold.it/900x300" class="img-responsive">
+			          <img src="<%=this.model.get('picture')%>" class="img-responsive">
 
 			          <br />
 
 			           <%=this.model.get('text')%>
 
 					  <p class="text-right">
-				          <a href="singlepost.html">
+				          <a id="ancharsinglepost" data-id="<%=this.model.get('id')%>">
 				          	continue reading...
 				          </a>
 				      </p>

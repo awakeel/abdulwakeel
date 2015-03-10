@@ -5,7 +5,7 @@ define(['jquery','backbone', 'underscore',  'text!tpl/header.html'],
                 tagName: 'div',
                 events: {
                     'click .dep-change':'changeDepartment',
-                    'click .logout_open': 'logout'
+                    'click #ancharaddnew': 'addNewPost'
                 },
                 initialize: function() { 
                     this.template = _.template(template);
@@ -13,6 +13,13 @@ define(['jquery','backbone', 'underscore',  'text!tpl/header.html'],
                 },
                 render: function () {
                   this.$el.html(this.template({}));
+                },
+                addNewPost:function(){
+                    require(['cms/addpost'],function(ViewAddPost){
+                        var objAddPost = new ViewAddPost();
+                        $('.posts .content').html(objAddPost.$el);    
+                    })
+                    
                 }
 
             });
